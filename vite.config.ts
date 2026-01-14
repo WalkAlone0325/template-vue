@@ -8,7 +8,7 @@ export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd())
 
   return {
-    base: command === 'build' ? env.VITE_APP_BASE_URL : '/',
+    base: command === 'build' ? env.VITE_PREFIX_APP : '/',
     plugins: createPlugins(mode, command),
     resolve: {
       alias: {
@@ -21,10 +21,10 @@ export default defineConfig(({ mode, command }) => {
       port: Number(env.VITE_PORT),
       open: true,
       proxy: {
-        [env.VITE_BASE_API]: {
+        [env.VITE_BASE_URL]: {
           target: env.VITE_API_URL,
           changeOrigin: true,
-          rewrite: (path) => path.replace(new RegExp(`^${env.VITE_BASE_API}`), ''),
+          rewrite: (path) => path.replace(new RegExp(`^${env.VITE_BASE_URL}`), ''),
         },
       },
     },

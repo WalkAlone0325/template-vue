@@ -3,7 +3,7 @@ import { router } from '@/router'
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
 const http = axios.create({
-  baseURL: import.meta.env.VITE_BASE_API,
+  baseURL: import.meta.env.VITE_BASE_URL,
   timeout: 60 * 1000,
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
